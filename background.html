@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!--
+ * Copyright (c) 2010 The Chromium Authors. All rights reserved.  Use of this
+ * source code is governed by a BSD-style license that can be found in the
+ * LICENSE file.
+-->
+<html>
+  <head>
+    <!--<script type="text/javascript" charset="utf-8" src="morphy.js"></script>-->
+    <script type="text/javascript" charset="utf-8" src="jquery-1.6.1.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="jquery.indexeddb.js"></script>
+    <script type="text/javascript" charset="utf-8" src="database.js"></script>
+    <script>
+      // connect to the database
+      helloword.indexedDB.open();
+      chrome.extension.onRequest.addListener( function(request, sender, sendResponse) {
+        // create word
+        var word = { 
+          word: request["word"],
+          description: request["description"],
+          headword: request["headword"],
+          notes: request["notes"],
+          added_on: new Date(),
+          learning : true,
+          example: request["example"],
+
+          // list
+          examples: request["examples"]||[],
+          dictionary: request["dictionary"]||[]
+          // --
+        };
+
+        helloword.indexedDB.saveWord(word);
+      });
+    </script>
+  </head>
+</html>
