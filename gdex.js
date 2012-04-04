@@ -1,5 +1,14 @@
-var word = $('<div></div>');
 
-word.addClass('helloword');
+var word;
 
-$('body').append('<div class="helloword"></div>');
+$.indexeddb("helloword").objectStore("words").get(
+
+var divhelloword = $('<div></div>');
+
+divhelloword.addClass('helloword');
+
+var divword = $('<div></div>');
+
+
+
+$('body').append(word);
